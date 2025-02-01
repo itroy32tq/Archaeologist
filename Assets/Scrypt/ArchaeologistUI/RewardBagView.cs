@@ -1,0 +1,28 @@
+﻿using ArchaeologistCore;
+using TMPro;
+using UniRx;
+using UnityEngine;
+
+namespace ArchaeologistUI
+{
+    public sealed class RewardBagView
+    {
+        [SerializeField] private TMP_Text _count;
+
+        private IRewardsBagPresenter _presenter;
+        private readonly CompositeDisposable _disposable = new();
+
+        public void Init(IRewardsBagPresenter presenter)
+        { 
+            _presenter = presenter;
+
+            _presenter.CurrentCount.Subscribe(UpdateRewardView).AddTo(_disposable);
+
+        }
+
+        private void UpdateRewardView(int value)
+        {
+            _count.text = _presenter.CurrentCount.Value.ToString();
+        }
+    }
+}

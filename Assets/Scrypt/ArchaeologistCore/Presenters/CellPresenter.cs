@@ -14,7 +14,6 @@ namespace ArchaeologistCore
         private readonly ReactiveProperty<int> _layer;
         public IReadOnlyReactiveProperty<int> Layer => _layer;
         public Sprite Sprite => _config.Sprites[_layer.Value];
-        public string LayerNum => Layer.Value.ToString();
 
         private readonly CompositeDisposable _disposable = new();
 

@@ -10,7 +10,7 @@ namespace ArchaeologistCore
         private readonly PlayerConfig _playerConfig;
         private readonly ReactiveProperty<int> _shovelCount;
         private readonly CompositeDisposable _disposable = new();
-        public Sprite ShovelSprit => _playerConfig.ShovelSprit;
+        public Sprite ShovelSprit => _playerConfig.ShovelSprite;
 
         public IReadOnlyReactiveProperty<int> ShovelCount => _shovelCount;
 

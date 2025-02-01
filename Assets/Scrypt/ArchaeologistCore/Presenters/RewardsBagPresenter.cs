@@ -3,7 +3,7 @@ using UniRx;
 
 namespace ArchaeologistCore
 {
-    public class RewardsBagPresenter
+    public class RewardsBagPresenter : IRewardsBagPresenter
     {
         private readonly RewardsBag _bug;
         private readonly ReactiveProperty<int> _currentCount;
@@ -20,7 +20,7 @@ namespace ArchaeologistCore
                 AddTo(_disposable);
         }
 
-        private void OnRewardsChanged(int obj)
+        public void OnRewardsChanged(int obj)
         {
             throw new NotImplementedException();
         }
