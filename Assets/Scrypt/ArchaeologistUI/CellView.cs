@@ -3,7 +3,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace ArchaeologistUI 
+namespace ArchaeologistUI
 {
     public class CellView : MonoBehaviour
     {
@@ -11,6 +11,7 @@ namespace ArchaeologistUI
         [SerializeField] private TextMeshPro _layer;
         private ICellPresenter _cellPresenter;
         private readonly CompositeDisposable _disposable = new();
+
 
         public void Init(ICellPresenter presenter)
         {
@@ -20,7 +21,6 @@ namespace ArchaeologistUI
 
             UpdateCellView(_cellPresenter.Layer.Value);
 
-            gameObject.SetActive(true);
         }
 
         private void UpdateCellView(int layer)
@@ -30,11 +30,11 @@ namespace ArchaeologistUI
             _layer.text = layer.ToString();
         }
 
-        private void OnMouseDown()
+        public void OnMouseDown()
         {
             Debug.Log($"Клик по клетке: {gameObject.name}");
 
-            _cellPresenter.TakePeel();
+            _cellPresenter?.OnClick.Execute(Unit.Default);
         }
 
 

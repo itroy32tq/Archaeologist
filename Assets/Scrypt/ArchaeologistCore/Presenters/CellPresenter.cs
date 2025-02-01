@@ -11,6 +11,10 @@ namespace ArchaeologistCore
         public int X => _cell.X;
         public int Y => _cell.Y;
 
+        public ReactiveCommand<Unit> OnClick { get; } = new ReactiveCommand<Unit>();
+
+        public event Action<ICellPresenter> OnCellClicked = delegate { };
+
         private readonly ReactiveProperty<int> _layer;
         public IReadOnlyReactiveProperty<int> Layer => _layer;
         public Sprite Sprite => _config.Sprites[_layer.Value];
@@ -31,6 +35,16 @@ namespace ArchaeologistCore
 
             _layer.Subscribe(OnLayerChanged).
                 AddTo(_disposable);
+
+            OnClick.Subscribe(OnViewClicked).AddTo(_disposable);
+
+        }
+
+        private void OnViewClicked(Unit unit)
+        {
+            
+            TakePeel();
+
         }
 
         public void OnLayerChanged(int layer)
@@ -45,6 +59,8 @@ namespace ArchaeologistCore
                 _layer.Value --;
 
                 _cell.Peel();
+
+                OnCellClicked.Invoke(this);
             }
 
             return _layer.Value switch

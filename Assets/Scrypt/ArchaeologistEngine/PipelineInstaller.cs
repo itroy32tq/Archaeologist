@@ -1,7 +1,7 @@
 ﻿using ArchaeologistEngine;
 using Zenject;
 
-namespace Assets.Scrypt.ArchaeologistEngine
+namespace ArchaeologistEngine
 {
     public sealed class PipelineInstaller : MonoInstaller
     {

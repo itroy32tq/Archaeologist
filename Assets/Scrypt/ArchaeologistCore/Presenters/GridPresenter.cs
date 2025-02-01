@@ -1,15 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 
 namespace ArchaeologistCore
 {
-    public sealed class GridPresenter : IGridPresenter
+    public sealed class GridPresenter : IGridPresenter, IDisposable
     {
         private readonly Grid _grid;
         private readonly ICellPresentersFactory _cellPresentersFactory;
 
         private readonly ICellPresenter[,] _cellPresenters;
+        private readonly CompositeDisposable _disposable = new();
+
         public IEnumerable<ICellPresenter> Presenters => _cellPresenters.Cast<ICellPresenter>();
+
+        public event Action<ICellPresenter> OnPresenterClicked = delegate { };
+
+        public List<(ICellPresenter, Action<ICellPresenter>)> _actons = new();
 
         public GridPresenter(Grid grid, ICellPresentersFactory factory)
         {
@@ -31,10 +39,33 @@ namespace ArchaeologistCore
             {
                 for (int y = 0; y < _grid.GridSize; y++)
                 {
-                    _cellPresenters[x,y] = _cellPresentersFactory.Create(_grid.Cells[x, y]);
+                    var presenter = _cellPresentersFactory.Create(_grid.Cells[x, y]);
+
+                    _cellPresenters[x,y] = presenter;
+
+                    presenter.OnCellClicked += HandlePresenterClicked;
+
+                    _actons.Add((presenter, HandlePresenterClicked));
                 }
             }
 
+        }
+
+        private void HandlePresenterClicked(ICellPresenter presenter)
+        {
+            OnPresenterClicked.Invoke(presenter);
+        }
+
+        public void Dispose()
+        {
+            foreach (var (presenter, handler) in _actons)
+            {
+                presenter.OnCellClicked -= handler;
+            }
+
+            _actons.Clear();
+
+            _disposable.Dispose();
         }
     }
 }

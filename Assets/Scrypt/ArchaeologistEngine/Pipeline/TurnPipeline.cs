@@ -1,12 +1,16 @@
-﻿namespace ArchaeologistEngine
+﻿using System;
+
+namespace ArchaeologistEngine
 {
     public class TurnPipeline : Pipeline
     {
         private readonly VisualPipeline _visualPipeline;
+        private readonly IServiceFactory _serviceFactory;
 
-        public TurnPipeline(VisualPipeline visualPipeline)
+        public TurnPipeline(VisualPipeline visualPipeline, IServiceFactory serviceFactory)
         {
             _visualPipeline = visualPipeline;
+            _serviceFactory = serviceFactory;
         }
 
         protected override void OnTaskFinished()
@@ -21,6 +25,13 @@
             {
                 ContinueAfterVisuals();
             }
+        }
+
+        internal void AddBaseScenario()
+        {
+            AddTask(_serviceFactory.Create<StartTurnTask>());
+            AddTask(_serviceFactory.Create<СhoiceCellTask>());
+            AddTask(_serviceFactory.Create<EndTurnTask>());
         }
 
         private void ContinueAfterVisuals()
