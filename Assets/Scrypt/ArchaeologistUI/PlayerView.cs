@@ -3,6 +3,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace ArchaeologistUI
 {
@@ -13,6 +14,7 @@ namespace ArchaeologistUI
         private IPlayerPresenter _presenter;
         private readonly CompositeDisposable _disposable = new();
 
+        [Inject]
         public void Init(IPlayerPresenter presenter)
         {
             _presenter = presenter;

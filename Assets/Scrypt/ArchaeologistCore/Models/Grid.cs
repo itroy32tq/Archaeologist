@@ -5,8 +5,11 @@ namespace ArchaeologistCore
         public int GridSize => Cells.Length;
         public Cell[,] Cells { get; private set; }
 
-        public Grid(int size, int maxLayers)
+        public Grid(GridConfig config)
         {
+            var size = config.GridSize;
+            var maxLayers = config.MaxLayers;
+
             Cells = new Cell[size, size];
 
             for (int x = 0; x < size; x++)  

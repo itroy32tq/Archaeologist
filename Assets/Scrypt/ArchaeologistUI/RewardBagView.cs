@@ -2,6 +2,7 @@
 using TMPro;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace ArchaeologistUI
 {
@@ -12,6 +13,7 @@ namespace ArchaeologistUI
         private IRewardsBagPresenter _presenter;
         private readonly CompositeDisposable _disposable = new();
 
+        [Inject]
         public void Init(IRewardsBagPresenter presenter)
         { 
             _presenter = presenter;
