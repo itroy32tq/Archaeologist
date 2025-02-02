@@ -20,10 +20,6 @@ namespace ArchaeologistEngine
                 AsSingle();
 
             Container.
-                Bind<RewardsBag>().
-                AsSingle();
-
-            Container.
                 Bind<IRewardsSystem>().
                 To<RewardsSystem>().
                 AsSingle();

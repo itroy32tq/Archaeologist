@@ -7,11 +7,11 @@ namespace ArchaeologistEngine
     {
         public override void InstallBindings()
         {
-            Container.Bind<GridView>().
+            Container.BindInterfacesAndSelfTo<GridView>().
                 FromComponentInHierarchy().
                 AsSingle();
 
-            Container.Bind<Runner>().
+            Container.BindInterfacesAndSelfTo<Runner>().
                 FromComponentInHierarchy().
                 AsSingle();
 

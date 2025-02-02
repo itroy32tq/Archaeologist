@@ -1,14 +1,16 @@
+using UnityEngine;
+
 namespace ArchaeologistCore
 {
     public sealed class Grid
     {
-        public int GridSize => Cells.Length;
+        public int GridSize => Cells.GetLength(0);
         public Cell[,] Cells { get; private set; }
 
         public Grid(GridConfig config)
         {
             var size = config.GridSize;
-            var maxLayers = config.MaxLayers;
+            var maxLayers = config.MaxLayers - 1;
 
             Cells = new Cell[size, size];
 

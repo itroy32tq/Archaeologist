@@ -5,18 +5,20 @@ using Zenject;
 
 namespace ArchaeologistUI
 {
-    public sealed class GridView : MonoBehaviour
+    public sealed class GridView : MonoBehaviour, IInitializable
     {
         [SerializeField] CellView _cellPrefab;
 
-        private readonly Dictionary<(int x, int Y), Vector3> _gridMap;
+        private readonly Dictionary<(int x, int Y), Vector3> _gridMap = new();
 
         private IGridPresenter _presenter;
+        private GridConfig _config;
 
         [Inject]
         public void Init(IGridPresenter presenter, GridConfig config) 
         {
             _presenter = presenter;
+            _config = config;
 
             if (_cellPrefab == null)
             {
@@ -27,29 +29,7 @@ namespace ArchaeologistUI
 
             foreach (Transform child in transform)
             {
-                DestroyImmediate(child.gameObject);
-            }
-
-            Vector2 cellSize = GetCellSize();
-
-            var gridSize = config.GridSize;
-
-            float offsetX = (gridSize - 1) * cellSize.x * 0.5f;
-            float offsetY = (gridSize - 1) * cellSize.y * 0.5f;
-
-            for (int x = 0; x < gridSize; x++)
-            {
-                for (int y = 0; y < gridSize; y++)
-                {
-                    Vector3 position = new(x * cellSize.x - offsetX, y * cellSize.y - offsetY, 0);
-
-                    _gridMap.Add((x, y), position);
-
-                    var view = Instantiate(_cellPrefab, position, Quaternion.identity, transform);
-
-                    view.Init(_presenter.GetPresenter(x,y));
-
-                }
+                Destroy(child.gameObject);
             }
         }
 
@@ -82,6 +62,31 @@ namespace ArchaeologistUI
             Debug.LogWarning("Не удалось определить размер ячейки, используем (1,1)");
 
             return new Vector2(1, 1);
+        }
+
+        public void Initialize()
+        {
+            Vector2 cellSize = GetCellSize();
+
+            var gridSize = _config.GridSize;
+
+            float offsetX = (gridSize - 1) * cellSize.x * 0.5f;
+            float offsetY = (gridSize - 1) * cellSize.y * 0.5f;
+
+            for (int x = 0; x < gridSize; x++)
+            {
+                for (int y = 0; y < gridSize; y++)
+                {
+                    Vector3 position = new(x * cellSize.x - offsetX, y * cellSize.y - offsetY, 0);
+
+                    _gridMap.Add((x, y), position);
+
+                    var view = Instantiate(_cellPrefab, position, Quaternion.identity, transform);
+
+                    view.Init(_presenter.GetPresenter(x, y));
+
+                }
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UnityEngine;
 
 namespace ArchaeologistCore
 {
@@ -23,6 +24,8 @@ namespace ArchaeologistCore
             _cellPresenters = new CellPresenter[grid.GridSize, grid.GridSize];
 
             _cellPresentersFactory = factory;
+
+            InitialGridData();
         }
 
         public ICellPresenter GetPresenter(int x, int y)
@@ -36,6 +39,8 @@ namespace ArchaeologistCore
             {
                 for (int y = 0; y < _grid.GridSize; y++)
                 {
+                    Debug.Log($"{x}, {y}");
+
                     var presenter = _cellPresentersFactory.Create(_grid.Cells[x, y]);
 
                     _cellPresenters[x,y] = presenter;

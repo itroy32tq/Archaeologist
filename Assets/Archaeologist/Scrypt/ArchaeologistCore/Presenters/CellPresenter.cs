@@ -14,7 +14,7 @@ namespace ArchaeologistCore
 
         public int X => _cell.X;
         public int Y => _cell.Y;
-        public Subject<UniTask> OnBounceRequested { get; }
+        public Subject<UniTask> OnBounceRequested { get; } = new Subject<UniTask>();
         public IReadOnlyReactiveProperty<int> Layer => _layer;
         public Sprite Sprite => _config.Sprites[_layer.Value];
         
@@ -28,7 +28,7 @@ namespace ArchaeologistCore
 
             _layer = new ReactiveProperty<int>(_cell.Layer);
 
-            if (_layer.Value != _config.Sprites.Length)
+            if (_layer.Value != _config.Sprites.Length - 1)
             {
                 throw new Exception();
             }
@@ -57,7 +57,7 @@ namespace ArchaeologistCore
 
         public void OnLayerChanged(int layer)
         {
-            throw new NotImplementedException();
+            Debug.Log(layer);
         }
 
         public void TakePeel()

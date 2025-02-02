@@ -20,13 +20,14 @@ namespace ArchaeologistCore
             _playerConfig = config;
 
             _shovelCount = new ReactiveProperty<int>(_player.ShovelCount);
+
             _shovelCount.Subscribe(OnShovelCountChanged).
                 AddTo(_disposable);
         }
 
         public void OnShovelCountChanged(int obj)
         {
-            throw new NotImplementedException();
+            Debug.Log(obj);
         }
 
         public void TakeExcavate()
