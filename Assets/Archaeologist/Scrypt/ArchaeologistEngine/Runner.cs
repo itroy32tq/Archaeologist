@@ -36,7 +36,6 @@ public class Runner : MonoBehaviour, IInitializable, IDisposable
         _turnPipeline.OnFinished += OnTurnPipelineFinished;
 
         _turnPipeline.AddBaseScenario();
-
     }
 
 }

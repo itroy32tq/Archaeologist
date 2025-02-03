@@ -32,12 +32,13 @@ namespace ArchaeologistUI
 
         private void OnRewardAdded(CollectionAddEvent<IRewardPresenter> data)
         {
-            Debug.Log(" добавили нагнаду в коллекцию ");
 
             var reward = data.Value;
 
             if (_gridView.TryGetPositionForCoordinate(reward.X, reward.Y, out var position))
             {
+                position = new Vector3(position.x, position.y, position.z - 0.1f);
+
                 var view = Instantiate(_rewardPrefab, position, Quaternion.identity, transform);
 
                 view.Init(reward);

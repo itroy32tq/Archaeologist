@@ -32,7 +32,7 @@ namespace ArchaeologistCore
 
         public void OnShovelCountChanged(int obj)
         {
-            Debug.Log(obj);
+            Debug.Log($" измнилось количество лопаток у игрока - {obj}");
         }
 
         public void TakeExcavate()

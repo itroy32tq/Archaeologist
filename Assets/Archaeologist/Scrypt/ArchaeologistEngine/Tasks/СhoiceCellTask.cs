@@ -1,5 +1,4 @@
 ﻿using ArchaeologistCore;
-using UnityEngine;
 
 namespace ArchaeologistEngine
 {
@@ -11,12 +10,12 @@ namespace ArchaeologistEngine
         public ChoiceCellTask(IGridPresenter gridPresenter, VisualPipeline visualPipeline)
         {
             _gridPresenter = gridPresenter;
+
             _visualPipeline = visualPipeline;
         }
 
         protected override void OnRun()
         {
-            Debug.Log("СhoiceCellTask started! ждем клика от пользователя ");
 
             _gridPresenter.OnPresenterClicked += PresenterClickHandler;
 
@@ -24,7 +23,6 @@ namespace ArchaeologistEngine
 
         private void PresenterClickHandler(ICellPresenter presenter)
         {
-            Debug.Log(" ждем отработки анимации ");
 
             _visualPipeline.AddTask(new BaunceCellVisualTask(presenter));
 
@@ -33,6 +31,7 @@ namespace ArchaeologistEngine
 
         protected override void OnFinish()
         {
+
             _gridPresenter.OnPresenterClicked -= PresenterClickHandler;
         }
     }

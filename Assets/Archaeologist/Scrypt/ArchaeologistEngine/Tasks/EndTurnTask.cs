@@ -15,15 +15,13 @@ namespace ArchaeologistEngine
 
         protected override void OnRun()
         {
-            _context.CheckStatus();
+
 
             Finish();
         }
 
         protected override void OnFinish()
         {
-
-            Debug.Log(" Pipeline Finished!");
 
             _turnPipeline.ClearTasks();
 

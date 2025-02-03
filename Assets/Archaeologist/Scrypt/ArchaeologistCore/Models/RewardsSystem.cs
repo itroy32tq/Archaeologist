@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace ArchaeologistCore
@@ -31,14 +30,11 @@ namespace ArchaeologistCore
 
         private void OnCellClickHandler(ICellPresenter cell)
         {
-            Debug.Log("система клик получила");
 
             if (!Check(_chance))
             {
                 return;
             }
-
-            Debug.Log("бросок костей");
 
             var reward = new Reward(cell.X, cell.Y);
 

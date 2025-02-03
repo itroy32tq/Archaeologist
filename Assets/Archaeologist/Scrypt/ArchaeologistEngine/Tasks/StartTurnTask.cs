@@ -13,9 +13,7 @@ namespace ArchaeologistEngine
 
         protected override void OnRun()
         {
-            Debug.Log(" Pipeline Started! ");
 
-            _context.CheckStatus();
 
             Finish();
         }

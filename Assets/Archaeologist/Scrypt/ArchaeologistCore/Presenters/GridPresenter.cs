@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
-using UnityEngine;
 
 namespace ArchaeologistCore
 {
@@ -53,7 +52,6 @@ namespace ArchaeologistCore
 
         private void HandlePresenterClicked(ICellPresenter presenter)
         {
-            Debug.Log($" грид клик получил и передал: {presenter.X} , {presenter.Y}");
 
             OnPresenterClicked.Invoke(presenter);
         }

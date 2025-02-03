@@ -1,25 +1,33 @@
 ﻿using ArchaeologistCore;
+using System;
+using UniRx;
+using UnityEditor;
 using UnityEngine;
 
 namespace ArchaeologistEngine
 {
     public sealed class GameContext
     {
-        private int _needToVictory;
-        private IRewardsBagPresenter _rewardsBagPresenter;
+        private readonly int _needToVictory;
+        private readonly IRewardsBagPresenter _rewardsBagPresenter;
+        private readonly CompositeDisposable _disposable = new();
 
         public GameContext(RewardConfig config, IRewardsBagPresenter bagPresenter)
         {
             _needToVictory = config.RewardsCountNeed;
+
+            _rewardsBagPresenter = bagPresenter;
+
+            _rewardsBagPresenter.CurrentCount.Subscribe(CheckRewardsCount).AddTo(_disposable);
         }
 
-        internal void CheckStatus()
+        private void CheckRewardsCount(int value)
         {
-            var value = _rewardsBagPresenter.CurrentCount.Value;
-
-            if (value >= _needToVictory) 
+            if (value >= _needToVictory)
             {
-                Debug.Log("!!!");
+                EditorApplication.isPaused = true;
+
+                Debug.Log(" игра окончена ");
             }
         }
     }

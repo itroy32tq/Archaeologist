@@ -21,11 +21,13 @@ namespace ArchaeologistUI
 
             _cellPresenter.Layer.Subscribe(UpdateCellView).AddTo(_disposable);
 
-            //UpdateCellView(_cellPresenter.Layer.Value);
 
-            _cellPresenter.OnBounceRequested
-                .Subscribe(_ => BaunceOnClickAnimationTask())
-                .AddTo(_disposable);
+            _cellPresenter.RequestBounce = async (onComplete) =>
+            {
+                await BaunceOnClickAnimationTask();
+
+                await onComplete();
+            };
 
         }
 
@@ -42,11 +44,12 @@ namespace ArchaeologistUI
 
             _cellPresenter?.OnClick.Execute(Unit.Default);
         }
+       
 
         public UniTask BaunceOnClickAnimationTask()
         {
 
-            float _duration = 0.15f;
+            float _duration = 0.45f;
 
             UniTaskCompletionSource tcs = new();
 

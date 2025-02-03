@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RewardConfig
   m_EditorClassIdentifier: 
   <RewardSprite>k__BackingField: {fileID: -7327716011021527328, guid: 51d736afd0db7194b8ef184a5ae24672, type: 3}
-  <RewardChance>k__BackingField: 1
+  <RewardChance>k__BackingField: 0.5
   <RewardsCountNeed>k__BackingField: 3
   <RewardsBugCapacity>k__BackingField: 3

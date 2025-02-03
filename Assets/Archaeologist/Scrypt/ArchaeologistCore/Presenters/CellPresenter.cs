@@ -14,7 +14,7 @@ namespace ArchaeologistCore
 
         public int X => _cell.X;
         public int Y => _cell.Y;
-        public Subject<UniTask> OnBounceRequested { get; } = new Subject<UniTask>();
+        public Func<Func<UniTask>, UniTask> RequestBounce { get; set; }
         public IReadOnlyReactiveProperty<int> Layer => _layer;
         public Sprite Sprite => _config.Sprites[_layer.Value - 1];
         
@@ -44,18 +44,14 @@ namespace ArchaeologistCore
         private void OnViewClicked(Unit unit)
         {
 
-            Debug.Log($" Презентер клик получил : {X} , {Y}");
+            //Debug.Log($" Презентер клик получил : {X} , {Y}");
 
             TakePeel();
-
         }
 
-        public async UniTask RequestBounce()
+        public async UniTask ExecuteBounce()
         {
-            if (OnBounceRequested.HasObservers)
-            {
-                await OnBounceRequested.First();
-            }     
+            await RequestBounce(() => UniTask.CompletedTask);
         }
 
         public void OnLayerChanged(int layer)

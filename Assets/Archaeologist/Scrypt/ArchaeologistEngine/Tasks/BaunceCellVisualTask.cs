@@ -1,5 +1,6 @@
 ﻿using ArchaeologistCore;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace ArchaeologistEngine
 {
@@ -20,7 +21,7 @@ namespace ArchaeologistEngine
         private async UniTask RunAnimation()
         {
 
-            await _cellPresenter.RequestBounce();
+            await _cellPresenter.ExecuteBounce();
 
             Finish();
         }

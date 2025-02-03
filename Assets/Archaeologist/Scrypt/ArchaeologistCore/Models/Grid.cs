@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace ArchaeologistCore
 {
     public sealed class Grid
