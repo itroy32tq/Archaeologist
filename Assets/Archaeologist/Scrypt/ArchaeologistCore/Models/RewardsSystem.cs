@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
+using Zenject;
 
 namespace ArchaeologistCore
 {
-    public sealed class RewardsSystem : IRewardsSystem, IDisposable
+    public sealed class RewardsSystem : IRewardsSystem, IInitializable, IDisposable
     {
         private readonly float _chance;
         private readonly RewardConfig _config;
-        private readonly Random _random = new();
+        private readonly System.Random _random = new();
         private readonly IGridPresenter _gridPresenter;
         private readonly CompositeDisposable _disposable = new();
         private readonly ReactiveCollection<IRewardPresenter> _rewards = new();
@@ -25,15 +27,18 @@ namespace ArchaeologistCore
 
             _chance = _config.RewardChance;
 
-            _gridPresenter.OnPresenterClicked += OnCellClickHandler;
         }
 
         private void OnCellClickHandler(ICellPresenter cell)
         {
+            Debug.Log("система клик получила");
+
             if (!Check(_chance))
             {
                 return;
             }
+
+            Debug.Log("бросок костей");
 
             var reward = new Reward(cell.X, cell.Y);
 
@@ -70,7 +75,14 @@ namespace ArchaeologistCore
 
             _actons.Clear();
 
+            _gridPresenter.OnPresenterClicked -= OnCellClickHandler;
+
             _disposable.Dispose();
+        }
+
+        public void Initialize()
+        {
+            _gridPresenter.OnPresenterClicked += OnCellClickHandler;
         }
     }
 }

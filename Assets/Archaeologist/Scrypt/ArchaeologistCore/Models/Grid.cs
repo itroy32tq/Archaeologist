@@ -10,7 +10,8 @@ namespace ArchaeologistCore
         public Grid(GridConfig config)
         {
             var size = config.GridSize;
-            var maxLayers = config.MaxLayers - 1;
+
+            var maxLayers = config.MaxLayers;
 
             Cells = new Cell[size, size];
 

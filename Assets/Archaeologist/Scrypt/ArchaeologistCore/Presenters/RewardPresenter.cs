@@ -37,6 +37,7 @@ namespace ArchaeologistCore
         private void OnDragToBagHandler(Unit unit)
         {
             _isCollected.Value = true;
+
             _reward.SetCollectedStatus(true);
         }
 

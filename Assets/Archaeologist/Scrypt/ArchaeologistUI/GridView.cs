@@ -46,27 +46,9 @@ namespace ArchaeologistUI
             return false;
         }
 
-        Vector2 GetCellSize()
-        {
-            if (_cellPrefab.GetComponent<SpriteRenderer>() != null)
-            {
-                SpriteRenderer spriteRenderer = _cellPrefab.GetComponent<SpriteRenderer>();
-                return spriteRenderer.bounds.size;
-            }
-            else if (_cellPrefab.GetComponent<MeshRenderer>() != null)
-            {
-                MeshRenderer meshRenderer = _cellPrefab.GetComponent<MeshRenderer>();
-                return new Vector2(meshRenderer.bounds.size.x, meshRenderer.bounds.size.y);
-            }
-
-            Debug.LogWarning("Не удалось определить размер ячейки, используем (1,1)");
-
-            return new Vector2(1, 1);
-        }
-
         public void Initialize()
         {
-            Vector2 cellSize = GetCellSize();
+            Vector2 cellSize = new(1.4f, 1.5f);
 
             var gridSize = _config.GridSize;
 

@@ -20,8 +20,7 @@ namespace Archaeologist
                 AsSingle();
 
             Container.
-                Bind<IRewardsSystem>().
-                To<RewardsSystem>().
+                BindInterfacesAndSelfTo<RewardsSystem>().
                 AsSingle();
 
         }

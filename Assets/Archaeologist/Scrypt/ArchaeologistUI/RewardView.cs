@@ -1,18 +1,26 @@
 ﻿using ArchaeologistCore;
+using DG.Tweening;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ArchaeologistUI
 {
     public sealed class RewardView : MonoBehaviour
     {
+        private Vector3 _startPosition;
         private bool isDragging = false;
         private IRewardPresenter _rewardPresenter;
+
         [SerializeField] private SpriteRenderer _spriteRenderer;
+
         private readonly CompositeDisposable _disposable = new();
 
         public void Init(IRewardPresenter presenter)
         {
+            _startPosition = transform.position;
+
             _rewardPresenter = presenter;
 
             _spriteRenderer.sprite = _rewardPresenter.Sprite;
@@ -20,6 +28,7 @@ namespace ArchaeologistUI
             _rewardPresenter.IsCollected.Subscribe(OnCollected).AddTo(_disposable);
         }
 
+        //по хорошему надо делать пул, но няма часу
         private void OnCollected(bool value)
         {
             if (value)
@@ -29,12 +38,12 @@ namespace ArchaeologistUI
 
         }
 
-        void OnMouseDown()
+        private void OnMouseDown()
         {
             isDragging = true;
         }
 
-        void OnMouseDrag()
+        private void OnMouseDrag()
         {
             if (isDragging)
             {
@@ -44,17 +53,41 @@ namespace ArchaeologistUI
             }
         }
 
-        void OnMouseUp()
+        private bool IsPointerOverUIElement()
+        {
+            PointerEventData eventData = new(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> results = new();
+
+            EventSystem.current.RaycastAll(eventData, results);
+
+            return results.Count > 0;
+        }
+
+        private void OnMouseUp()
         {
             isDragging = false;
 
-            Collider2D hit = Physics2D.OverlapPoint(transform.position);
-
-            if (hit != null && hit.GetComponent<RewardBagView>() != null)
+            if (IsPointerOverUIElement())
             {
-                hit.GetComponent<RewardBagView>().AcceptReward(this);
+                RewardBagView rewardBag = FindObjectOfType<RewardBagView>();
 
-                _rewardPresenter.OnDragToBag.Execute(Unit.Default);
+                if (rewardBag != null)
+                {
+                    rewardBag.AcceptReward(this);
+
+                    _rewardPresenter.OnDragToBag.Execute(Unit.Default);
+
+                    return;
+                }
+            }
+            else 
+            {
+                transform.DOMove(_startPosition, 0.3f)
+                     .SetEase(Ease.OutBack);
             }
         }
     }

@@ -39,7 +39,6 @@ namespace ArchaeologistCore
             {
                 for (int y = 0; y < _grid.GridSize; y++)
                 {
-                    Debug.Log($"{x}, {y}");
 
                     var presenter = _cellPresentersFactory.Create(_grid.Cells[x, y]);
 
@@ -54,6 +53,8 @@ namespace ArchaeologistCore
 
         private void HandlePresenterClicked(ICellPresenter presenter)
         {
+            Debug.Log($" грид клик получил и передал: {presenter.X} , {presenter.Y}");
+
             OnPresenterClicked.Invoke(presenter);
         }
 

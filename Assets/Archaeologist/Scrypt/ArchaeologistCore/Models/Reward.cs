@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ArchaeologistCore
+﻿namespace ArchaeologistCore
 {
     public sealed class Reward
     {

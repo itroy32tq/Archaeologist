@@ -21,7 +21,7 @@ namespace ArchaeologistUI
 
             _cellPresenter.Layer.Subscribe(UpdateCellView).AddTo(_disposable);
 
-            UpdateCellView(_cellPresenter.Layer.Value);
+            //UpdateCellView(_cellPresenter.Layer.Value);
 
             _cellPresenter.OnBounceRequested
                 .Subscribe(_ => BaunceOnClickAnimationTask())
@@ -38,7 +38,7 @@ namespace ArchaeologistUI
 
         public void OnMouseDown()
         {
-            Debug.Log($"Клик по клетке: {gameObject.name}");
+            Debug.Log($"Клик по клетке: {_cellPresenter.X} , {_cellPresenter.Y}");
 
             _cellPresenter?.OnClick.Execute(Unit.Default);
         }

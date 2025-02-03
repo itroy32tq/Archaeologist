@@ -1,5 +1,4 @@
 ﻿using ArchaeologistCore;
-using System;
 using TMPro;
 using UniRx;
 using UnityEngine;

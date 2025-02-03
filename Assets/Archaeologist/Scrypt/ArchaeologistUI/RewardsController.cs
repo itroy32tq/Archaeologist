@@ -32,6 +32,8 @@ namespace ArchaeologistUI
 
         private void OnRewardAdded(CollectionAddEvent<IRewardPresenter> data)
         {
+            Debug.Log(" добавили нагнаду в коллекцию ");
+
             var reward = data.Value;
 
             if (_gridView.TryGetPositionForCoordinate(reward.X, reward.Y, out var position))
@@ -39,6 +41,8 @@ namespace ArchaeologistUI
                 var view = Instantiate(_rewardPrefab, position, Quaternion.identity, transform);
 
                 view.Init(reward);
+
+                return;
             }
 
             throw new Exception();
