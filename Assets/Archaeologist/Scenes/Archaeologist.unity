@@ -472,22 +472,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938899641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377358e2d3e00b54d92171b6256bdc60, type: 3}
+  m_Script: {fileID: 11500000, guid: a4fb00dd7b2cd2a468fa185c36e1e4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridConfig: {fileID: 11400000, guid: 3defe62dbd74f1548b38c337faf2e34e, type: 2}
+  _cellConfig: {fileID: 11400000, guid: 092b15698ccd26b40b59ed4906fca925, type: 2}
+  _playerConfig: {fileID: 11400000, guid: ebd58391a8b964440bc7ddf5fee83d28, type: 2}
+  _rewardConfig: {fileID: 11400000, guid: 516d622c769af684bba5f0d27ebf2dc6, type: 2}
 --- !u!114 &1938899645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938899641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321a534cdd14cc34bb327764d21c112a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1938899646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabf7e0c8ab16df41b3c98896ebd2b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1938899647
+--- !u!114 &1938899646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -511,6 +503,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73633a9a9ab2f9348a163c0646765694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1938899647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938899641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321a534cdd14cc34bb327764d21c112a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1938899648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,13 +524,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938899641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4fb00dd7b2cd2a468fa185c36e1e4d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 377358e2d3e00b54d92171b6256bdc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridConfig: {fileID: 0}
-  _cellConfig: {fileID: 0}
-  _playerConfig: {fileID: 0}
-  _rewardConfig: {fileID: 0}
 --- !u!1 &2098097858
 GameObject:
   m_ObjectHideFlags: 0

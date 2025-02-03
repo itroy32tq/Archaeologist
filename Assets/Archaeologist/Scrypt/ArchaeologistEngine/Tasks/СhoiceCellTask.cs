@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace ArchaeologistEngine
 {
-    public sealed class СhoiceCellTask : Task
+    public sealed class ChoiceCellTask : Task
     {
         private readonly IGridPresenter _gridPresenter;
         private readonly VisualPipeline _visualPipeline;
 
-        public СhoiceCellTask(IGridPresenter gridPresenter, VisualPipeline visualPipeline)
+        public ChoiceCellTask(IGridPresenter gridPresenter, VisualPipeline visualPipeline)
         {
             _gridPresenter = gridPresenter;
             _visualPipeline = visualPipeline;

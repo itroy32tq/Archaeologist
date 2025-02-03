@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ArchaeologistEngine
+﻿namespace ArchaeologistEngine
 {
     public class TurnPipeline : Pipeline
     {
@@ -30,7 +28,7 @@ namespace ArchaeologistEngine
         internal void AddBaseScenario()
         {
             AddTask(_serviceFactory.Create<StartTurnTask>());
-            AddTask(_serviceFactory.Create<СhoiceCellTask>());
+            AddTask(_serviceFactory.Create<ChoiceCellTask>());
             AddTask(_serviceFactory.Create<EndTurnTask>());
         }
 

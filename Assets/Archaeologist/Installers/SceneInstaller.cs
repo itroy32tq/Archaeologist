@@ -1,7 +1,7 @@
 using ArchaeologistUI;
 using Zenject;
 
-namespace ArchaeologistEngine
+namespace Archaeologist
 {
     public class SceneInstaller : MonoInstaller
     {

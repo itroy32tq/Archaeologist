@@ -1,7 +1,7 @@
 ﻿using ArchaeologistCore;
 using Zenject;
 
-namespace ArchaeologistEngine
+namespace Archaeologist
 {
     public sealed class PresentersInstaller : MonoInstaller
     {

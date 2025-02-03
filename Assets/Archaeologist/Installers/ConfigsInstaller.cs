@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace ArchaeologistEngine
+namespace Archaeologist
 {
     public sealed class ConfigsInstaller : MonoInstaller
     {

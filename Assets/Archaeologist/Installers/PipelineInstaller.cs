@@ -1,6 +1,7 @@
-﻿using Zenject;
+﻿using ArchaeologistEngine;
+using Zenject;
 
-namespace ArchaeologistEngine
+namespace Archaeologist
 {
     public sealed class PipelineInstaller : MonoInstaller
     {
@@ -19,7 +20,7 @@ namespace ArchaeologistEngine
                 AsTransient();
             
             Container.
-                Bind<СhoiceCellTask>().
+                Bind<ChoiceCellTask>().
                 AsTransient();
 
             Container.
