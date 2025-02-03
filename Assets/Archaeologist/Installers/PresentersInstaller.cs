@@ -18,8 +18,7 @@ namespace Archaeologist
                 AsSingle();
 
             Container.
-                Bind<IPlayerPresenter>().
-                To<PlayerPresenter>().
+                BindInterfacesAndSelfTo<PlayerPresenter>().
                 AsSingle();
 
             Container.
