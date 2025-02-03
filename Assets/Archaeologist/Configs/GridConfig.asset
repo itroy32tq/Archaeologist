@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770fdf7dd73b1774fabe03443ffb24cb, type: 3}
+  m_Script: {fileID: 0}
   m_Name: GridConfig
-  m_EditorClassIdentifier: 
-  <GridSize>k__BackingField: 0
-  <MaxLayers>k__BackingField: 0
+  m_EditorClassIdentifier: ArchaeologistCore:ArchaeologistCore:GridConfig
+  <GridSize>k__BackingField: 10
+  <MaxLayers>k__BackingField: 3
