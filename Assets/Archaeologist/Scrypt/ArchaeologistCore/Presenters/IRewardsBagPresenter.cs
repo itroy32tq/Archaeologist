@@ -7,6 +7,7 @@ namespace ArchaeologistCore
         IReadOnlyReactiveProperty<int> CurrentCount { get; }
         ReactiveCommand<Unit> AcceptReward { get; }
 
+        void LoadData(RewardsBagData data);
         void OnRewardsChanged(int obj);
     }
 }

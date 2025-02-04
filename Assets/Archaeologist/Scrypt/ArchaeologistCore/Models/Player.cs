@@ -1,4 +1,6 @@
-﻿namespace ArchaeologistCore
+﻿using System;
+
+namespace ArchaeologistCore
 {
     public sealed class Player
     {
@@ -14,5 +16,6 @@
             ShovelCount--;
         }
 
+        
     }
 }

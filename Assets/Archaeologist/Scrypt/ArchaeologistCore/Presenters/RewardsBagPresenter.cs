@@ -32,5 +32,10 @@ namespace ArchaeologistCore
         {
             _bug.IncRewardCount();
         }
+
+        public void LoadData(RewardsBagData data)
+        {
+            _currentCount.Value = data.CurrentCount;
+        }
     }
 }

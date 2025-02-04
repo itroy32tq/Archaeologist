@@ -1,4 +1,5 @@
 ﻿using ArchaeologistCore;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -26,11 +27,6 @@ namespace ArchaeologistUI
 
                 return;
             }
-
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
         }
 
         public bool TryGetPositionForCoordinate(int x, int y, out Vector3 position)
@@ -46,8 +42,16 @@ namespace ArchaeologistUI
             return false;
         }
 
+        [Button]
         public void Initialize()
         {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            _gridMap.Clear();
+
             Vector2 cellSize = new(1.4f, 1.5f);
 
             var gridSize = _config.GridSize;

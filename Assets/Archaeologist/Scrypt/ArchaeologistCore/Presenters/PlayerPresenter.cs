@@ -49,6 +49,11 @@ namespace ArchaeologistCore
             }
         }
 
+        public void LoadData(PlayerData data)
+        {
+            _shovelCount.Value = data.ShovelCount;
+        }
+
         public void Initialize()
         {
             _gridPresenter.OnPresenterClicked += OnPresenterClickHandler;

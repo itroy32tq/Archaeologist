@@ -1,4 +1,6 @@
-﻿namespace ArchaeologistCore
+﻿using System;
+
+namespace ArchaeologistCore
 {
     public sealed class RewardsBag
     {
@@ -17,6 +19,11 @@
                 CurrentCount++;
             }
             
+        }
+
+        public void LoadData(RewardsBagData data)
+        {
+            CurrentCount = data.CurrentCount;
         }
     }
 }

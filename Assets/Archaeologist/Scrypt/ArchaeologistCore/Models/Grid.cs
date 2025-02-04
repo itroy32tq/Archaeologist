@@ -1,3 +1,5 @@
+using System;
+
 namespace ArchaeologistCore
 {
     public sealed class Grid
@@ -20,6 +22,11 @@ namespace ArchaeologistCore
                     Cells[x, y] = new Cell(x,y, maxLayers);
                 }
             }
+        }
+
+        internal void ReplaceCell(Cell cell)
+        {
+            Cells[cell.X,cell.Y] = cell;
         }
     }
 }

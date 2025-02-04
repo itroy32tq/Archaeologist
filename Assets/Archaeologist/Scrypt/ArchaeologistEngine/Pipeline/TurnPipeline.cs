@@ -25,7 +25,7 @@
             }
         }
 
-        internal void AddBaseScenario()
+        public void AddBaseScenario()
         {
             AddTask(_serviceFactory.Create<StartTurnTask>());
             AddTask(_serviceFactory.Create<ChoiceCellTask>());

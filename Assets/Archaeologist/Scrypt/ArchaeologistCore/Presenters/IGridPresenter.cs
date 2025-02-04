@@ -11,5 +11,6 @@ namespace ArchaeologistCore
 
         ICellPresenter GetPresenter(int x, int y);
         void InitialGridData();
+        void LoadData(GridData data);
     }
 }

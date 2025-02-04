@@ -22,8 +22,6 @@ namespace ArchaeologistUI
             _presenter.ShovelCount.Subscribe(UpdatePlayerView).AddTo(_disposable);
 
             _icon.sprite = presenter.ShovelSprit;
-
-            //UpdatePlayerView(presenter.ShovelCount.Value);
         }
 
         private void UpdatePlayerView(int value)

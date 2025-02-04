@@ -8,7 +8,7 @@ namespace ArchaeologistCore
     public sealed class GridPresenter : IGridPresenter, IDisposable
     {
         private readonly Grid _grid;
-        private readonly ICellPresenter[,] _cellPresenters;
+        private ICellPresenter[,] _cellPresenters;
         private readonly CompositeDisposable _disposable = new();
         private readonly ICellPresentersFactory _cellPresentersFactory;
 
@@ -54,6 +54,30 @@ namespace ArchaeologistCore
         {
 
             OnPresenterClicked.Invoke(presenter);
+        }
+
+        public void LoadData(GridData data)
+        {
+            int maxX = 0;
+            int maxY = 0;
+
+            foreach (var cell in data.Cells)
+            {
+                if (cell.X > maxX) maxX = cell.X;
+                if (cell.Y > maxY) maxY = cell.Y;
+            }
+
+            _cellPresenters = new ICellPresenter[maxX + 1, maxY + 1];
+
+            foreach (var cellData in data.Cells)
+            {
+                var cell = new Cell(cellData.X, cellData.Y, cellData.Layer);
+
+                _grid.ReplaceCell(cell);
+
+                _cellPresenters[cellData.X, cellData.Y] = _cellPresentersFactory.Create(cell);
+            }
+
         }
 
         public void Dispose()

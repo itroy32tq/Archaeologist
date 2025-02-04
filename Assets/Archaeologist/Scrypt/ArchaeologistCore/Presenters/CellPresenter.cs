@@ -29,7 +29,7 @@ namespace ArchaeologistCore
 
             _layer = new ReactiveProperty<int>(_cell.Layer);
 
-            if (_layer.Value != _config.Sprites.Length)
+            if (_layer.Value > _config.Sprites.Length)
             {
                 throw new Exception();
             }
